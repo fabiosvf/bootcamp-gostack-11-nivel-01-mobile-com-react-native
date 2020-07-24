@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, Text, StyleSheet, StatusBar } from "react-native";
+import {
+  SafeAreaView,
+  FlatList,
+  Text,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
 
 import api from "./services/api";
 
@@ -9,7 +15,11 @@ import api from "./services/api";
  * Todos os componentes possuem por padrão "display: flex"
  *
  * View: div, footer, header, main, aside, section
+ * SafeAreaView: representa uma área segura pra visualizar os componentes
  * Text: p, span, strong, h1, h2, h3
+ *
+ * ScrollView: Não é performático com listas muito grandes
+ * FlatList: É performático pois renderiza apenas a página corrente
  */
 
 export default function App() {
@@ -24,13 +34,19 @@ export default function App() {
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-      <ScrollView style={styles.container}>
-        {projects.map((project) => (
-          <Text style={styles.project} key={project.id}>
-            {project.title}
-          </Text>
-        ))}
-      </ScrollView>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={projects}
+          keyExtractor={(project) => project.id}
+          renderItem={({ item: project }) => {
+            return (
+              <Text style={styles.project} key={project.id}>
+                {project.title}
+              </Text>
+            );
+          }}
+        />
+      </SafeAreaView>
     </>
   );
 }
@@ -42,6 +58,6 @@ const styles = StyleSheet.create({
   },
   project: {
     color: "#fff",
-    fontSize: 80,
+    fontSize: 30,
   },
 });

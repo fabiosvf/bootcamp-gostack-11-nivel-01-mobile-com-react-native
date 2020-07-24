@@ -40,11 +40,19 @@ $ code .
 $ react-native run-android
 ```
 
+### Instalando bibliotecas e editando configurações
+- Instalar a biblioteca 'axios'
+  - Essa biblioteca é responsável por fazer as chamadas API para conectar o nosso ambiente Mobile com o Back-end
+```
+$ yarn add axios
+```
+
 ---
 
 ## Tecnologias utilizadas
 
 #### Dependências de Projeto
+- [axios](https://yarnpkg.com/package/axios)
 - [react](https://yarnpkg.com/package/react)
 - [react-native](https://yarnpkg.com/package/react-native)
 
